@@ -1,6 +1,6 @@
 # CGRA 2020/2021
 
-## Group T0xG0y
+## Group T07G02
 | Name             | Number    | E-Mail               |
 | ---------------- | --------- | -------------------- |
 | Adriano Soares   | 201904873 | up201904873@fe.up.pt |
