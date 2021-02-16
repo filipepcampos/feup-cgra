@@ -3,7 +3,7 @@
 ## Group T0xG0y
 | Name             | Number    | E-Mail               |
 | ---------------- | --------- | -------------------- |
-| John Doe         | 201901010 | ...                  |
+| Adriano Soares   | 201904873 | up201904873@fe.up.pt |
 | Filipe Campos    | 201905609 | up201905609@fe.up.pt |
 
 ----
