@@ -15,20 +15,21 @@ export class MyUnitCubeQuad extends CGFobject {
     }
 
     display(){
-        for(var i = 0; i < 3; ++i){
-            for(var j = 1; j <= 2; ++j){
-                var values;
-                switch(i){
-                    case 0: values = [1, 0, 0]; break;
-                    case 1: values = [0, 1, 0]; break;
-                    case 2: values = [0, 0, 1]; break;
-                }
-                this.scene.pushMatrix();
-                this.scene.rotate(this.toRadian(j==1 ? 90 : -90), ...values);
-                this.scene.translate(0, 0, 0.5);
-                this.faces[i*j].display();
-                this.scene.popMatrix();
+        var nCube = 0;
+        for(var i = 0; i < 2; ++i){
+            var values;
+            var rot;
+            switch(i){
+                case 0: values = [1, 0, 0]; rot = [90, -90]; break;
+                case 1: values = [0, 1, 0]; rot = [180, 90, 0, -90]; break;
             }
+            for(var j in rot){
+                this.scene.pushMatrix();
+                this.scene.rotate(this.toRadian(rot[j]), ...values);
+                this.scene.translate(0, 0, 0.5);
+                this.faces[nCube++].display();
+                this.scene.popMatrix();
+            }      
         }
     }
 }
