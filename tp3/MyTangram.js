@@ -82,10 +82,7 @@ export class MyTangram extends CGFobject {
       this.scene.popMatrix();
   
       this.scene.pushMatrix();
-      this.scene.multMatrix([-1,0,0,0,
-                      0,1,0,0,
-                      0,0,1,0,
-                      0,0,0,1]);
+      this.scene.rotate(this.toRadian(180), 0, 1, 0);
       this.scene.multMatrix(this.translationMx(0,1,0));
       this.scene.multMatrix(this.rotationMx(55));
       this.yellowParallelogram.display();
