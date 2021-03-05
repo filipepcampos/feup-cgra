@@ -11,66 +11,63 @@ export class MyUnitCube extends CGFobject {
 
 
 	}
-	
-	initBuffers() {
-		this.vertices = [
-			0.5,0.5,0.5,    //0
-            0.5,0.5,-0.5,   //1
-            0.5,-0.5,0.5,   //2
-            0.5,-0.5,-0.5,  //3
-            -0.5,0.5,0.5,   //4
-            -0.5,0.5,-0.5,  //5
-            -0.5,-0.5,0.5,  //6
-            -0.5,-0.5,-0.5  //7
-		];
 
-        this.vertices = [];
-        this.normals = [];
-        for(var x = -1; x <= 1; x+=2){
-            for(var y = -1; y <= 1; y+=2){
-                for(var z = -1; z <= 1; z+=2){
-                    this.vertices.push(0.5*x,0.5*y,0.5*z);
-                    this.vertices.push(0.5*x,0.5*y,0.5*z);
-                    this.vertices.push(0.5*x,0.5*y,0.5*z);
-                    this.normals.push(1*x,0,0);
-                    this.normals.push(0,1*y,0);
-                    this.normals.push(0,0,1*z);
+    makeFace(face, n){
+        var verts = [];
+        for(var i = -1; i <= 1; i+=2){
+            for(var j = -1; j <= 1; j+=2){
+                switch(face){
+                    case "x": verts.push(0.5*n, 0.5*i, 0.5*j); break;
+                    case "y": verts.push(0.5*i, 0.5*n, 0.5*j); break;
+                    case "z": verts.push(0.5*i, 0.5*j, 0.5*n); break;
                 }
             }
         }
+        var norm = [];
+        switch(face){
+            case "x": norm = [1*n,0,0]; break;
+            case "y": norm = [0,1*n,0]; break;
+            case "z": norm = [0,0,1*n]; break;
+        }
+        var norms = [];
+        for(var i = 0; i < 4; ++i){
+            norms.push(...norm);
+        }
+        return [verts, norms]
+    }
+	
+	initBuffers() {
+        this.vertices = [];
+        this.normals = [];
 
-        //Counter-clockwise reference of vertices
-        var tmp = [
-            0,1,2, // plano A
-            1,3,2,
-
-            7,3,1, // plano B
-            1,5,7,
-
-            6,7,5, // plano C
-            5,4,6,
-
-            0,2,4, // plano D
-            4,2,6,
-
-            5,1,0, // plano E
-            5,0,4,
-
-            2,3,7, // plano F
-            7,6,2
-        ];
-
-        this.indices = [];
-        for(var i = 0; i < tmp.length; i += 3){
-            for(var j = 0; j < 3; ++j){
-                this.indices.push(tmp[i]*3+j, tmp[i+1]*3+j, tmp[i+2]*3+j);
+        // Vão ser criadas 6 faces, x, -x, y, -y, z, -z
+        var faces = ["x","y","z"];
+        for(var i = 0; i < 3; ++i){
+            for(var j = -1; j <= 1; j+=2){
+                var result = this.makeFace(faces[i], j);
+                this.vertices.push(...result[0]);
+                this.normals.push(...result[1]);
             }
         }
+        
+        // Cada face é composta por 2 triangulos (6 pontos)
+        this.indices = [];
+        for(var i = 0; i < 6; ++i){
+            if(i == 1 || i == 2 || i == 5){
+                this.indices.push(4*i+2, 4*i+1, 4*i);
+                this.indices.push(4*i+1, 4*i+2, 4*i+3);
+            }
+            if(i == 0 || i == 3 || i == 4){
+                this.indices.push(4*i, 4*i+1, 4*i+2);
+                this.indices.push(4*i+3, 4*i+2, 4*i+1);
+            }            
+        }
 
-		//The defined indices (and corresponding vertices)
-		//will be read in groups of three to draw triangles
 		this.primitiveType = this.scene.gl.TRIANGLES;
-
 		this.initGLBuffers();
 	}
+
+    updateBuffers(){
+
+    }
 }
