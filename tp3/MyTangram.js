@@ -41,17 +41,18 @@ export class MyTangram extends CGFobject {
     }
 
   display(){
+      //this.greenMaterial.apply();
+      this.scene.pushMatrix();
+      this.scene.multMatrix(this.translationMx(-1,0,0)); 
+      this.greenDiamond.display();
+      this.scene.popMatrix();
+
+
       this.redMaterial.apply();
       this.scene.pushMatrix();
       this.scene.multMatrix(this.rotationMx(180));
       this.scene.multMatrix(this.translationMx(0,-1,0));
       this.redTriangle.display();
-      this.scene.popMatrix();
-  
-      this.greenMaterial.apply();
-      this.scene.pushMatrix();
-      this.scene.multMatrix(this.translationMx(-1,0,0)); 
-      this.greenDiamond.display();
       this.scene.popMatrix();
       
       this.blueMaterial.apply();
@@ -68,6 +69,7 @@ export class MyTangram extends CGFobject {
       this.orangeTriangle.display();
       this.scene.popMatrix();
   
+      this.pinkMaterial.apply();
       this.scene.pushMatrix();
       this.scene.multMatrix(this.translationMx(1,-1,0));
       this.scene.multMatrix(this.rotationMx(180));
@@ -75,17 +77,20 @@ export class MyTangram extends CGFobject {
       this.pinkLeftTriangle.display();
       this.scene.popMatrix();
   
+      this.pinkMaterial.apply();
       this.scene.pushMatrix();
       this.scene.multMatrix(this.translationMx(2,-1,0));
       this.scene.multMatrix(this.rotationMx(90));
       this.pinkRightTriangle.display();
       this.scene.popMatrix();
   
+      this.purpleMaterial.apply();
       this.scene.pushMatrix();
       this.scene.multMatrix(this.translationMx(1,0,0));
       this.purpleTriangle.display();
       this.scene.popMatrix();
   
+      this.yellowMaterial.apply();
       this.scene.pushMatrix();
       this.scene.rotate(this.toRadian(180), 0, 1, 0);
       this.scene.multMatrix(this.translationMx(0,1,0));
@@ -108,6 +113,9 @@ export class MyTangram extends CGFobject {
     this.greenMaterial = this.makeMaterial(0,1,0);
     this.blueMaterial = this.makeMaterial(0,0,1);
     this.orangeMaterial = this.makeMaterial(1,0.647,0);
+    this.pinkMaterial = this.makeMaterial(1,0.412,0.706);
+    this.purpleMaterial = this.makeMaterial(0.502, 0, 0.502);
+    this.yellowMaterial = this.makeMaterial(1, 1, 0);
   }
 
   enableNormalViz(){
