@@ -1,4 +1,4 @@
-import {CGFobject} from '../lib/CGF.js';
+import {CGFappearance, CGFobject} from '../lib/CGF.js';
 import { MyDiamond } from "./MyDiamond.js";
 import { MyParallelogram } from "./MyParallelogram.js";
 import { MyTriangleSmall } from "./MyTriangleSmall.js";
@@ -15,6 +15,7 @@ export class MyTangram extends CGFobject {
     this.pinkLeftTriangle = new MyTriangleSmall(scene);
     this.pinkRightTriangle = new MyTriangleSmall(scene);
     this.yellowParallelogram = new MyParallelogram(scene);
+    this.initMaterials();
 	}
 
   translationMx(Tx, Ty, Tz){
@@ -40,23 +41,27 @@ export class MyTangram extends CGFobject {
     }
 
   display(){
+      this.redMaterial.apply();
       this.scene.pushMatrix();
       this.scene.multMatrix(this.rotationMx(180));
       this.scene.multMatrix(this.translationMx(0,-1,0));
       this.redTriangle.display();
       this.scene.popMatrix();
   
+      this.greenMaterial.apply();
       this.scene.pushMatrix();
       this.scene.multMatrix(this.translationMx(-1,0,0)); 
       this.greenDiamond.display();
       this.scene.popMatrix();
       
+      this.blueMaterial.apply();
       this.scene.pushMatrix();
       this.scene.multMatrix(this.rotationMx(-90));
       this.scene.multMatrix(this.translationMx(2,0,0));
       this.blueTriangle.display();    
       this.scene.popMatrix();
   
+      this.orangeMaterial.apply();
       this.scene.pushMatrix();
       this.scene.multMatrix(this.translationMx(0,-2,0));
       this.scene.multMatrix(this.rotationMx(90));
@@ -87,6 +92,22 @@ export class MyTangram extends CGFobject {
       this.scene.multMatrix(this.rotationMx(55));
       this.yellowParallelogram.display();
       this.scene.popMatrix();
+  }
+
+  makeMaterial(R, G, B){
+    let kA = 0.2, kD = 0.5, kS = 1;
+    var material = new CGFappearance(this.scene);
+    material.setAmbient(R*kA, G*kA, B*kA, 1.0);
+    material.setDiffuse(R*kD, G*kD, B*kD, 1.0);
+    material.setSpecular(R*kS, G*kS, B*kS, 1.0);
+    return material;
+  }
+
+  initMaterials(){
+    this.redMaterial = this.makeMaterial(1,0,0);
+    this.greenMaterial = this.makeMaterial(0,1,0);
+    this.blueMaterial = this.makeMaterial(0,0,1);
+    this.orangeMaterial = this.makeMaterial(1,0.647,0);
   }
 
   enableNormalViz(){
