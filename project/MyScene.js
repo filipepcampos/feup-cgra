@@ -1,7 +1,7 @@
 import { CGFscene, CGFcamera, CGFaxis, CGFappearance } from "../lib/CGF.js";
 import { MyMovingObject } from "./MyMovingObject.js";
 import { MySphere } from "./MySphere.js";
-
+import { MyCubeMap } from "./MyCubeMap.js";
 /**
 * MyScene
 * @constructor
@@ -31,6 +31,7 @@ export class MyScene extends CGFscene {
         this.axis = new CGFaxis(this);
         this.incompleteSphere = new MySphere(this, 16, 8);
         this.movingObject = new MyMovingObject(this);
+        this.cubeMap = new MyCubeMap(this);
 
         this.defaultAppearance = new CGFappearance(this);
 		this.defaultAppearance.setAmbient(0.2, 0.4, 0.8, 1.0);
@@ -137,6 +138,8 @@ export class MyScene extends CGFscene {
         //this.incompleteSphere.display();
 
         this.movingObject.display();
+
+        this.cubeMap.display(this.camera.position);
 
         // ---- END Primitive drawing section
     }
