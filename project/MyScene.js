@@ -1,7 +1,9 @@
-import { CGFscene, CGFcamera, CGFaxis, CGFappearance } from "../lib/CGF.js";
+import { CGFscene, CGFcamera, CGFaxis, CGFappearance, CGFtexture } from "../lib/CGF.js";
 import { MyMovingObject } from "./MyMovingObject.js";
 import { MySphere } from "./MySphere.js";
 import { MyCubeMap } from "./MyCubeMap.js";
+import { MyCubeMapTexture } from "./MyCubeMapTexture.js";
+
 /**
 * MyScene
 * @constructor
@@ -10,10 +12,12 @@ export class MyScene extends CGFscene {
     constructor() {
         super();
     }
+
     init(application) {
         super.init(application);
         this.initCameras();
         this.initLights();
+        this.initCubeMap();
 
         //Background color
         this.gl.clearColor(0.0, 0.0, 0.0, 1.0);
@@ -31,7 +35,6 @@ export class MyScene extends CGFscene {
         this.axis = new CGFaxis(this);
         this.incompleteSphere = new MySphere(this, 16, 8);
         this.movingObject = new MyMovingObject(this);
-        this.cubeMap = new MyCubeMap(this);
 
         this.defaultAppearance = new CGFappearance(this);
 		this.defaultAppearance.setAmbient(0.2, 0.4, 0.8, 1.0);
@@ -46,18 +49,39 @@ export class MyScene extends CGFscene {
 		this.sphereAppearance.setSpecular(0.0, 0.0, 0.0, 1);
 		this.sphereAppearance.setShininess(120);
 
-
         //Objects connected to MyInterface
         this.displayAxis = true;
+        this.selectedCubeMapTexture = 0;
     }
+
     initLights() {
         this.lights[0].setPosition(15, 2, 5, 1);
         this.lights[0].setDiffuse(1.0, 1.0, 1.0, 1.0);
         this.lights[0].enable();
         this.lights[0].update();
     }
+
     initCameras() {
         this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(15, 15, 15), vec3.fromValues(0, 0, 0));
+    }
+
+    initCubeMap() {
+        this.cubeMap = new MyCubeMap(this);
+
+        this.demoCubeMapTexture = new MyCubeMapTexture(this, "./images/demo_cubemap", ["bottom.png","top.png","back.png","left.png","front.png","right.png"]);
+        this.testCubeMapTexture = new MyCubeMapTexture(this, "./images/test_cubemap", ["ny.png","py.png","nz.png","px.png","pz.png","nx.png"]);
+ 
+        this.cubeMap.setTexture(this.demoCubeMapTexture);
+
+        this.cubeMapTextures = [
+            this.demoCubeMapTexture,
+            this.testCubeMapTexture,
+        ]
+ 
+        this.cubeMapTextureList = {
+            "Demo Cube Map": 0,
+            "Test Cube Map": 1
+        };
     }
 
     setDefaultAppearance() {
@@ -66,6 +90,10 @@ export class MyScene extends CGFscene {
         this.setSpecular(0.2, 0.4, 0.8, 1.0);
         this.setEmission(0,0,0,1);
         this.setShininess(10.0);
+    }
+
+    setCubeMapTexture(n){
+        this.cubeMap.setTexture(this.cubeMapTextures[n]);
     }
 
     checkKeys()  {
@@ -136,9 +164,7 @@ export class MyScene extends CGFscene {
 
         //This sphere does not have defined texture coordinates
         //this.incompleteSphere.display();
-
         this.movingObject.display();
-
         this.cubeMap.display(this.camera.position);
 
         // ---- END Primitive drawing section

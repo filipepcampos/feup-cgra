@@ -29,9 +29,11 @@ export class MyMovingObject extends CGFobject{
     }
 
     display(){
+        this.scene.pushMatrix();
         this.scene.translate(...this.position);
         this.scene.rotate(this.orientation, 0, 1, 0);
         this.scene.rotate(Math.PI/2, 1, 0, 0);
         this.pyramid.display();
+        this.scene.popMatrix();
     }
 }
