@@ -58,6 +58,11 @@ export class MyScene extends CGFscene {
         //Objects connected to MyInterface
         this.displayAxis = true;
         this.selectedCubeMapTexture = 0;
+        this.displaySphere = false;
+        this.displayCylinder = false;
+        this.displayMovingObject = true;
+        this.scaleFactorMovingObject = 1.0;
+        this.speedFactorMovingObject = 1.0;
     }
 
     initLights() {
@@ -148,6 +153,10 @@ export class MyScene extends CGFscene {
         this.movingObject.update();
     }
 
+    updateMovingObjectSpeedScale(speedScale){
+        this.movingObject.updateSpeedScale(speedScale);
+    }
+
     display() {
         // ---- BEGIN Background, camera and axis setup
         // Clear image and depth buffer everytime we update the scene
@@ -169,12 +178,12 @@ export class MyScene extends CGFscene {
         // ---- BEGIN Primitive drawing section
 
         //This sphere does not have defined texture coordinates
-        this.sphere.display();
-        this.movingObject.display();
+        if(this.displaySphere) this.sphere.display();
 
-        //this.cylinder.display();
+        if(this.displayCylinder) this.cylinder.display();
+    
+        if (this.displayMovingObject) this.movingObject.display(this.scaleFactorMovingObject);
 
-        //tex.unbind();
         this.cubeMap.display(this.camera.position);
 
         // ---- END Primitive drawing section

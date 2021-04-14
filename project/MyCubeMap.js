@@ -58,7 +58,7 @@ export class MyCubeMap extends CGFobject{
         this.scene.pushMatrix();
         this.appearance.apply();
         this.scene.translate(cameraPosition[0], cameraPosition[1], cameraPosition[2]);
-        this.scene.scale(100,100,100);     
+        this.scene.scale(500,500,500);     
         this.cubeDisplay();
         this.scene.popMatrix();
     }

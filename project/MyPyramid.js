@@ -20,7 +20,10 @@ export class MyPyramid extends CGFobject {
 
         var ang = 0;
         var alphaAng = 2*Math.PI/this.slices;
-
+        
+        this.vertices.push(0,0,0);
+        this.normals.push(0,-1,0);
+        
         for(var i = 0; i < this.slices; i++){
             // All vertices have to be declared for a given face
             // even if they are shared with others, as the normals 
@@ -31,9 +34,12 @@ export class MyPyramid extends CGFobject {
             var ca=Math.cos(ang);
             var caa=Math.cos(ang+alphaAng);
 
-            this.vertices.push(0,1,0);
-            this.vertices.push(ca, 0, -sa);
-            this.vertices.push(caa, 0, -saa);
+            this.vertices.push(0,1,0);          //0
+            this.vertices.push(ca, 0, -sa);     //1
+            this.vertices.push(caa, 0, -saa);   //2
+
+            this.vertices.push(ca, 0, -sa);     //3
+            this.vertices.push(caa, 0, -saa);   //4
 
             // triangle normal computed by cross product of two edges
             var normal= [
@@ -56,8 +62,12 @@ export class MyPyramid extends CGFobject {
             this.normals.push(...normal);
             this.normals.push(...normal);
             this.normals.push(...normal);
+            
+            this.normals.push(0,-1,0,
+                              0,-1,0);
 
-            this.indices.push(3*i, (3*i+1) , (3*i+2) );
+            this.indices.push(5*i+1, (5*i+1)+1 , (5*i+2)+1 );
+            this.indices.push((5*i+4)+1, (5*i+3)+1, 0);
 
             ang+=alphaAng;
         }
