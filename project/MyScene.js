@@ -5,11 +5,6 @@ import { MyCubeMap } from "./MyCubeMap.js";
 import { MyCubeMapTexture } from "./MyCubeMapTexture.js";
 import { MyCylinder } from "./MyCylinder.js";
 
-
-
-import { MyPlane } from "./MyPlane.js";
-import { MyQuad } from "./MyQuad.js";
-
 /**
 * MyScene
 * @constructor
@@ -42,6 +37,7 @@ export class MyScene extends CGFscene {
         this.incompleteSphere = new MySphere(this, 16, 8);
         this.movingObject = new MyMovingObject(this);
         this.cylinder = new MyCylinder(this, 32);
+        this.sphere = new MySphere(this, 64, 64);
 
         this.defaultAppearance = new CGFappearance(this);
 		this.defaultAppearance.setAmbient(0.2, 0.4, 0.8, 1.0);
@@ -56,7 +52,7 @@ export class MyScene extends CGFscene {
 		this.sphereAppearance.setSpecular(0.0, 0.0, 0.0, 1);
 		this.sphereAppearance.setShininess(120);
         // Debug 
-        this.sphereAppearance.loadTexture("./images/test_cubemap/nx.png");
+        this.sphereAppearance.loadTexture("./images/earth.jpg");
         this.sphereAppearance.setTextureWrap('REPEAT', 'REPEAT');
 
         //Objects connected to MyInterface
@@ -173,10 +169,10 @@ export class MyScene extends CGFscene {
         // ---- BEGIN Primitive drawing section
 
         //This sphere does not have defined texture coordinates
-        //this.incompleteSphere.display();
+        this.sphere.display();
         this.movingObject.display();
 
-        this.cylinder.display();
+        //this.cylinder.display();
 
         //tex.unbind();
         this.cubeMap.display(this.camera.position);

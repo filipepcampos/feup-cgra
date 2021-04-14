@@ -28,8 +28,8 @@ export class MySphere extends CGFobject {
 
     var phi = 0;
     var theta = 0;
-    var phiInc = Math.PI / this.latDivs;
-    var thetaInc = (2 * Math.PI) / this.longDivs;
+    var phiInc = Math.PI / this.latDivs;  // Latitude - Cima/Baixo
+    var thetaInc = (2 * Math.PI) / this.longDivs; // Longitude - Ao longo de equador
     var latVertices = this.longDivs + 1;
 
     // build an all-around stack at a time, starting on "north pole" and proceeding "south"
@@ -69,7 +69,7 @@ export class MySphere extends CGFobject {
         //--- Texture Coordinates
         // To be done... 
         // May need some additional code also in the beginning of the function.
-        
+        this.texCoords.push(longitude/this.longDivs, latitude/this.latDivs);
       }
       phi += phiInc;
     }
