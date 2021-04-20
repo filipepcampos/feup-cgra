@@ -4,6 +4,7 @@ import { MySphere } from "./MySphere.js";
 import { MyCubeMap } from "./MyCubeMap.js";
 import { MyCubeMapTexture } from "./MyCubeMapTexture.js";
 import { MyCylinder } from "./MyCylinder.js";
+import { MyFish } from "./MyFish.js";
 
 /**
 * MyScene
@@ -39,6 +40,8 @@ export class MyScene extends CGFscene {
         this.cylinder = new MyCylinder(this, 32);
         this.sphere = new MySphere(this, 64, 64);
 
+        this.fish = new MyFish(this);
+
         this.defaultAppearance = new CGFappearance(this);
 		this.defaultAppearance.setAmbient(0.2, 0.4, 0.8, 1.0);
         this.defaultAppearance.setDiffuse(0.2, 0.4, 0.8, 1.0);
@@ -60,7 +63,7 @@ export class MyScene extends CGFscene {
         this.selectedCubeMapTexture = 0;
         this.displaySphere = false;
         this.displayCylinder = false;
-        this.displayMovingObject = true;
+        this.displayMovingObject = false;
         this.scaleFactorMovingObject = 1.0;
         this.speedFactorMovingObject = 1.0;
     }
@@ -115,30 +118,35 @@ export class MyScene extends CGFscene {
             text+=" W ";
             keysPressed=true;
             this.movingObject.accelerate(0.1);
+            this.fish.accelerate(0.1);
         }
 
         if (this.gui.isKeyPressed("KeyS")) {
             text+=" S ";
             keysPressed=true;
             this.movingObject.accelerate(-0.1);
+            this.fish.accelerate(-0.1);
         }
 
         if (this.gui.isKeyPressed("KeyA")) {
             text+=" A ";
             keysPressed=true;
             this.movingObject.turn(0.2);
+            this.fish.turn(0.2);
         }
 
         if (this.gui.isKeyPressed("KeyD")) {
             text+=" D ";
             keysPressed=true;
             this.movingObject.turn(-0.2);
+            this.fish.turn(-0.2);
         }
 
         if (this.gui.isKeyPressed("KeyR")) {
             text+=" R ";
             keysPressed=true;
             this.movingObject.reset();
+            this.fish.reset();
         }
 
         if (keysPressed)
@@ -151,10 +159,12 @@ export class MyScene extends CGFscene {
         //To be done... It is done. Is it done?
         this.checkKeys();
         this.movingObject.update();
+        this.fish.update();
     }
 
     updateMovingObjectSpeedScale(speedScale){
         this.movingObject.updateSpeedScale(speedScale);
+        this.fish.updateSpeedScale(speedScale);
     }
 
     display() {
@@ -183,6 +193,8 @@ export class MyScene extends CGFscene {
         if(this.displayCylinder) this.cylinder.display();
     
         if (this.displayMovingObject) this.movingObject.display(this.scaleFactorMovingObject);
+
+        this.fish.display();
 
         this.cubeMap.display(this.camera.position);
 

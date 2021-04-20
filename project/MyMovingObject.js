@@ -33,8 +33,6 @@ export class MyMovingObject extends CGFobject{
         this.scene.pushMatrix();
         this.scene.translate(this.position[0], 0.0, this.position[2]);
         this.scene.scale(scale, scale, scale);
-        this.scene.translate(-this.position[0], 0.0, -this.position[2]);
-        this.scene.translate(...this.position);
         this.scene.rotate(this.orientation, 0, 1, 0);
         this.scene.rotate(Math.PI/2, 1, 0, 0);
         this.pyramid.display();
