@@ -5,7 +5,12 @@
 ## Screenshots
 
 ### 1 - MyFish
-![Screenshot 1](screenshots/proj-t1g07-1a.png)
-![Screenshot 2](screenshots/proj-t1g07-1b.png)
-![Screenshot 3](screenshots/proj-t1g07-1c.png)
-![Screenshot 4](screenshots/proj-t1g07-1d.png)
+
+
+![Screenshot 1](project/screenshots/proj-t7g02-1a.png)
+
+![Screenshot 2](project/screenshots/proj-t7g02-1b.png)
+
+![Screenshot 3](project/screenshots/proj-t7g02-1c.png)
+
+![Screenshot 4](project/screenshots/proj-t7g02-1d.png)
