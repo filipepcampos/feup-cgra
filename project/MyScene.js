@@ -84,17 +84,20 @@ export class MyScene extends CGFscene {
 
         this.demoCubeMapTexture = new MyCubeMapTexture(this, "./images/demo_cubemap", ["bottom.png","top.png","back.png","left.png","front.png","right.png"]);
         this.testCubeMapTexture = new MyCubeMapTexture(this, "./images/test_cubemap", ["ny.png","py.png","nz.png","px.png","pz.png","nx.png"]);
+        this.underwaterCubeMapTexture = new MyCubeMapTexture(this, "./images/underwater_cubemap", ["bottom.jpg","top.jpg","back.jpg","left.jpg","front.jpg","right.jpg"]);
  
-        this.cubeMap.setTexture(this.demoCubeMapTexture);
+        this.cubeMap.setTexture(this.underwaterCubeMapTexture);
 
         this.cubeMapTextures = [
             this.demoCubeMapTexture,
             this.testCubeMapTexture,
+            this.underwaterCubeMapTexture
         ]
  
         this.cubeMapTextureList = {
             "Demo Cube Map": 0,
-            "Test Cube Map": 1
+            "Test Cube Map": 1,
+            "Underwater Cube Map": 2
         };
     }
 
