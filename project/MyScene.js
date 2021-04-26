@@ -159,7 +159,7 @@ export class MyScene extends CGFscene {
         //To be done... It is done. Is it done?
         this.checkKeys();
         this.movingObject.update();
-        this.fish.update();
+        this.fish.update(t);
     }
 
     updateMovingObjectSpeedScale(speedScale){
