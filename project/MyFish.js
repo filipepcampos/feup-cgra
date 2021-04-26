@@ -48,7 +48,7 @@ export class MyFish extends CGFobject{
         this.eyeAppearance.setDiffuse(0.9, 0.9, 0.9, 1.0);
         this.eyeAppearance.setSpecular(0.9, 0.9, 0.9, 1.0);
 		this.eyeAppearance.setShininess(120);
-        this.eyeAppearance.loadTexture("./images/eye.png");
+        this.eyeAppearance.loadTexture("./images/eye.jpg");
     }
 
     update(time) {
@@ -84,6 +84,7 @@ export class MyFish extends CGFobject{
         this.scene.pushMatrix();
         this.scene.translate(this.bodyWidth - 0.3, 0.2, this.bodyLength/2 + 0.3);
         this.scene.scale(this.eyeScale, this.eyeScale, this.eyeScale);
+        this.scene.rotate(Math.PI-Math.PI/6, 0, 1, 0);
         this.eye.display();
         this.scene.popMatrix();
 
@@ -91,6 +92,7 @@ export class MyFish extends CGFobject{
         this.scene.pushMatrix();
         this.scene.translate(-this.bodyWidth + 0.3, 0.2, this.bodyLength/2 + 0.3);
         this.scene.scale(this.eyeScale, this.eyeScale, this.eyeScale);
+        this.scene.rotate(Math.PI/6, 0, 1, 0);
         this.eye.display();
         this.scene.popMatrix();
 
