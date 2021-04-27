@@ -101,7 +101,7 @@ export class MyFish extends CGFobject{
         // Big Fin
         this.scene.pushMatrix();
         this.scene.translate(0, 0, -this.bodyLength);
-        this.scene.rotate(Math.sin(this.time*0.8)*(20*Math.PI/180), 0, 1, 0);
+        this.scene.rotate(Math.sin(this.time*0.6)*(20*Math.PI/180), 0, 1, 0);
         this.scene.translate(0, 0, -2*this.bigFinScale);
         this.scene.rotate(Math.PI/2, 0, 0, 1);
         this.scene.rotate(Math.PI/2, 1, 0, 0);

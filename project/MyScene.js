@@ -5,6 +5,9 @@ import { MyCubeMap } from "./MyCubeMap.js";
 import { MyCubeMapTexture } from "./MyCubeMapTexture.js";
 import { MyCylinder } from "./MyCylinder.js";
 import { MyFish } from "./MyFish.js";
+import { MySeaFloor } from "./MySeaFloor.js";
+import { MyNest } from "./MyNest.js";
+import { MyWaterSurface } from "./MyWaterSurface.js";
 
 /**
 * MyScene
@@ -41,6 +44,9 @@ export class MyScene extends CGFscene {
         this.sphere = new MySphere(this, 64, 64);
 
         this.fish = new MyFish(this);
+        this.seaFloor = new MySeaFloor(this, 20, 50, 3);
+        this.nest = new MyNest(this, 3);
+        this.waterSurface = new MyWaterSurface(this, 100, 50);
 
         this.defaultAppearance = new CGFappearance(this);
 		this.defaultAppearance.setAmbient(0.2, 0.4, 0.8, 1.0);
@@ -76,7 +82,7 @@ export class MyScene extends CGFscene {
     }
 
     initCameras() {
-        this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(15, 15, 15), vec3.fromValues(0, 0, 0));
+        this.camera = new CGFcamera(1.5, 0.1, 500, vec3.fromValues(2, 3, 2), vec3.fromValues(0, 2, 0));
     }
 
     initCubeMap() {
@@ -89,15 +95,15 @@ export class MyScene extends CGFscene {
         this.cubeMap.setTexture(this.underwaterCubeMapTexture);
 
         this.cubeMapTextures = [
+            this.underwaterCubeMapTexture,
             this.demoCubeMapTexture,
-            this.testCubeMapTexture,
-            this.underwaterCubeMapTexture
+            this.testCubeMapTexture
         ]
  
         this.cubeMapTextureList = {
-            "Demo Cube Map": 0,
-            "Test Cube Map": 1,
-            "Underwater Cube Map": 2
+            "Underwater Cube Map": 0,
+            "Demo Cube Map": 1,
+            "Test Cube Map": 2,
         };
     }
 
@@ -163,6 +169,7 @@ export class MyScene extends CGFscene {
         this.checkKeys();
         this.movingObject.update();
         this.fish.update(t);
+        this.waterSurface.update(t);
     }
 
     updateMovingObjectSpeedScale(speedScale){
@@ -198,6 +205,9 @@ export class MyScene extends CGFscene {
         if (this.displayMovingObject) this.movingObject.display(this.scaleFactorMovingObject);
 
         this.fish.display();
+        this.seaFloor.display();
+        this.nest.display();
+        this.waterSurface.display();
 
         this.cubeMap.display(this.camera.position);
 
