@@ -45,7 +45,7 @@ export class MyScene extends CGFscene {
 
         this.fish = new MyFish(this);
         this.seaFloor = new MySeaFloor(this, 20, 50, 3);
-        this.nest = new MyNest(this, 3);
+        this.nest = new MyNest(this, 3, 30);
         this.waterSurface = new MyWaterSurface(this, 100, 50);
 
         this.defaultAppearance = new CGFappearance(this);
