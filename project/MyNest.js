@@ -1,5 +1,4 @@
-import { CGFappearance, CGFobject } from "../lib/CGF.js";
-import { MyConcaveCylinder } from "./MyConcaveCylinder.js";
+import { CGFappearance, CGFobject, CGFshader, CGFtexture } from "../lib/CGF.js";
 
 export class MyNest extends CGFobject {
     constructor(scene, radius, slices){
@@ -11,12 +10,22 @@ export class MyNest extends CGFobject {
     }
 
     initMaterials(){
-        this.appearence = new CGFappearance(this.scene);
-        this.appearence.loadTexture("./images/rock/baseColor.jpg");
+        this.baseTexture = new CGFtexture(this.scene, "./images/rock/baseColor.jpg");
+        /*
+        this.heightTexture = new CGFtexture(this.scene, "./images/rock/height.png");
+        this.normalTexture = new CGFtexture(this.scene, "./images/rock/normal.jpg");
+
+        this.shader = new CGFshader(this.scene.gl, "./shaders/nestShader.vert", "./shaders/nestShader.frag");
+        this.shader.setUniformsValues({uHeightSampler: 1, uNormalSampler: 2});
+        */
+        
     }
 
     display(){
-        this.appearence.apply();
+        this.baseTexture.bind(0);
+        //this.heightTexture.bind(1);
+        //this.normalTexture.bind(2);
+        //this.scene.setActiveShader(this.shader);
         this.scene.pushMatrix();
         this.scene.scale(this.radius, 1, this.radius);
         this.scene.translate(0, 2.5, 0);
