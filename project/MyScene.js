@@ -204,7 +204,7 @@ export class MyScene extends CGFscene {
     
         if (this.displayMovingObject) this.movingObject.display(this.scaleFactorMovingObject);
 
-        this.fish.display();
+        this.fish.display(this.scaleFactorMovingObject);
         this.seaFloor.display();
         this.nest.display();
         this.waterSurface.display();

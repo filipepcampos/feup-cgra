@@ -76,11 +76,11 @@ export class MyFish extends CGFobject{
         this.orientation = 0.0;
     }
 
-    display(){
+    display(scaleFactor){
         // Movement, Scale and Orientation
         this.scene.pushMatrix();
         this.scene.translate(this.position[0], 3.0, this.position[2]);
-        this.scene.scale(this.scale, this.scale, this.scale);
+        this.scene.scale(this.scale*scaleFactor, this.scale*scaleFactor, this.scale*scaleFactor);
         this.scene.rotate(this.orientation, 0, 1, 0);
 
         this.eyeAppearance.apply();
