@@ -105,6 +105,6 @@ void main() {
 
     vTextureCoord = aTextureCoord;
 	normal = vec4(aVertexNormal, 1.0);
-	coords = vec4(aVertexPosition, 1.0)/10.0;
+	coords = vec4(aVertexPosition, 1.0);
 	vTextureCoord = aTextureCoord;
 }
