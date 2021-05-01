@@ -10,17 +10,19 @@ export class MyNest extends CGFobject {
     }
 
     initMaterials(){
-        this.baseTexture = new CGFtexture(this.scene, "./images/rock/baseColor.jpg");
         this.heightTexture = new CGFtexture(this.scene, "./images/rock/height.png");
-        this.normalTexture = new CGFtexture(this.scene, "./images/rock/normal.jpg");
 
         this.shader = new CGFshader(this.scene.gl, "./shaders/nestShader.vert", "./shaders/nestShader.frag");
+        this.appearence = new CGFappearance(this.scene);
+        this.appearence.setAmbient(1.0,1.0,1.0,1.0);
+        this.appearence.setDiffuse(1.0,1.0,1.0,1.0);
+        this.appearence.setSpecular(0.0,0.0,0.0,1.0);
+        this.appearence.loadTexture("./images/rock/baseColor.jpg");
     }
 
     display(){
-        this.baseTexture.bind(0);
+        this.appearence.apply();
         this.heightTexture.bind(1);
-        this.normalTexture.bind(2);
         this.scene.setActiveShader(this.shader);
         this.scene.pushMatrix();
         this.scene.scale(this.radius, 1, this.radius);
