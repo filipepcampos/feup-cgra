@@ -43,8 +43,9 @@ export class MyFish extends CGFobject{
         this.finsAppearence.setSpecular(0.1, 0.1, 0.4, 1.0);
 
         this.bodyAppearence = new CGFappearance(this.scene);
-        this.bodyAppearence.setAmbient(0.800, 0.800, 0.950, 1.0);
-        this.bodyAppearence.setDiffuse(0.900, 0.900, 0.980, 1.0);
+        this.bodyAppearence.setAmbient(1.0, 1.0, 1.0, 1.0);
+        this.bodyAppearence.setDiffuse(1.0, 1.0, 1.0, 1.0);
+        this.bodyAppearence.setSpecular(0.1,0.1,0.1,1.0);
 
         this.eyeAppearance = new CGFappearance(this.scene);
 		this.eyeAppearance.setAmbient(0.9, 0.9, 0.9, 1.0);

@@ -14,8 +14,8 @@ export class MyNest extends CGFobject {
 
         this.shader = new CGFshader(this.scene.gl, "./shaders/nestShader.vert", "./shaders/nestShader.frag");
         this.appearence = new CGFappearance(this.scene);
-        this.appearence.setAmbient(0.9,0.9,0.9,1.0);
-        this.appearence.setDiffuse(0.9,0.9,0.9,1.0);
+        this.appearence.setAmbient(1.0,1.0,1.0,1.0);
+        this.appearence.setDiffuse(1.0,1.0,1.0,1.0);
         this.appearence.setSpecular(0.0,0.0,0.0,1.0);
         this.appearence.loadTexture("./images/rock/baseColor.jpg");
     }
