@@ -35,13 +35,16 @@ export class MyFish extends CGFobject{
     
     initMaterials(){
         this.scalesTexture = new CGFtexture(this.scene, "./images/fish.jpg");
-        this.bodyShader = new CGFshader(this.scene.gl, "./shaders/bodyShader.vert", "./shaders/bodyShader.frag");
+        this.bodyShader = new CGFshader(this.scene.gl, "./shaders/illuminatedBodyShader.vert", "./shaders/illuminatedBodyShader.frag");
 
-        this.bodyAppearance = new CGFappearance(this.scene);
-        this.bodyAppearance.setAmbient(0.843, 0.969, 0.957, 1.0);
-        this.bodyAppearance.setDiffuse(0.843, 0.969, 0.957, 1.0);
-        this.bodyAppearance.setSpecular(0.1, 0.1, 0.4, 1.0);
-        this.bodyAppearance.loadTexture("./images/fish.jpg");
+        this.finsAppearence = new CGFappearance(this.scene);
+        this.finsAppearence.setAmbient(0.843, 0.969, 0.957, 1.0);
+        this.finsAppearence.setDiffuse(0.843, 0.969, 0.957, 1.0);
+        this.finsAppearence.setSpecular(0.1, 0.1, 0.4, 1.0);
+
+        this.bodyAppearence = new CGFappearance(this.scene);
+        this.bodyAppearence.setAmbient(0.800, 0.800, 0.950, 1.0);
+        this.bodyAppearence.setDiffuse(0.900, 0.900, 0.980, 1.0);
 
         this.eyeAppearance = new CGFappearance(this.scene);
 		this.eyeAppearance.setAmbient(0.9, 0.9, 0.9, 1.0);
@@ -96,8 +99,7 @@ export class MyFish extends CGFobject{
         this.eye.display();
         this.scene.popMatrix();
 
-        this.bodyAppearance.apply();
-        
+        this.finsAppearence.apply();
         // Big Fin
         this.scene.pushMatrix();
         this.scene.translate(0, 0, -this.bodyLength);
@@ -145,8 +147,9 @@ export class MyFish extends CGFobject{
         this.gills.display();
         this.scene.popMatrix();
 
-        this.scene.setActiveShader(this.bodyShader);
 
+        this.bodyAppearence.apply();
+        this.scene.setActiveShader(this.bodyShader);
         // Body
         this.scalesTexture.bind();
         this.scene.pushMatrix();
