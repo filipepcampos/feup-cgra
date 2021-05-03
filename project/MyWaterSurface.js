@@ -20,13 +20,14 @@ export class MyWaterSurface extends CGFobject {
     }
 
     display(){
-        this.scene.gl.texParameteri(this.scene.gl.TEXTURE_2D, this.scene.gl.TEXTURE_WRAP_S, this.scene.gl.MIRRORED_REPEAT);
-        this.scene.gl.texParameteri(this.scene.gl.TEXTURE_2D, this.scene.gl.TEXTURE_WRAP_T, this.scene.gl.MIRRORED_REPEAT);
+        this.seaTexture.bind(0);
+        this.scene.gl.texParameteri(this.scene.gl.TEXTURE_2D, this.scene.gl.TEXTURE_WRAP_S, this.scene.gl.CLAMP_TO_EDGE);
+        this.scene.gl.texParameteri(this.scene.gl.TEXTURE_2D, this.scene.gl.TEXTURE_WRAP_T, this.scene.gl.CLAMP_TO_EDGE);
+        this.distortionMap.bind(1);
 
         this.shader.setUniformsValues({uSampler2: 1, timeFactor: this.timeFactor});
-        this.seaTexture.bind(0);
-        this.distortionMap.bind(1);
         this.scene.setActiveShader(this.shader);
+        
         this.scene.pushMatrix();
         this.scene.translate(0, 20, 0);
         this.scene.scale(this.width, 1, this.width);
