@@ -8,6 +8,7 @@ import { MyFish } from "./MyFish.js";
 import { MySeaFloor } from "./MySeaFloor.js";
 import { MyNest } from "./MyNest.js";
 import { MyWaterSurface } from "./MyWaterSurface.js";
+import { MyRock } from "./MyRock.js";
 
 /**
 * MyScene
@@ -47,6 +48,10 @@ export class MyScene extends CGFscene {
         this.seaFloor = new MySeaFloor(this, 20, 50, 3);
         this.nest = new MyNest(this, 3, 30);
         this.waterSurface = new MyWaterSurface(this, 100, 50);
+
+
+        // THIS IS JUST FOR DEBUG
+        this.debugRockPleaseDeleteThis = new MyRock(this, 10, 10);
 
         this.defaultAppearance = new CGFappearance(this);
 		this.defaultAppearance.setAmbient(0.2, 0.4, 0.8, 1.0);
@@ -208,6 +213,15 @@ export class MyScene extends CGFscene {
         this.seaFloor.display();
         this.nest.display();
         this.waterSurface.display();
+
+
+        this.pushMatrix();
+        // TODO THIS IS JUST FOR DEBUG ///////////////////////////////////////
+        this.translate(0, 5, 0);
+        this.debugRockPleaseDeleteThis.display();
+        this.popMatrix();
+        ///////////////////////////////////////////////////////////////////
+        
 
         this.cubeMap.display(this.camera.position);
 
