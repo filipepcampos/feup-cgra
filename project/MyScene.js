@@ -4,12 +4,13 @@ import { MySphere } from "./MySphere.js";
 import { MyCubeMap } from "./MyCubeMap.js";
 import { MyCubeMapTexture } from "./MyCubeMapTexture.js";
 import { MyCylinder } from "./MyCylinder.js";
-import { MyFish } from "./MyFish.js";
+import { MyMovingFish } from "./MyMovingFish.js";
 import { MySeaFloor } from "./MySeaFloor.js";
 import { MyNest } from "./MyNest.js";
 import { MyWaterSurface } from "./MyWaterSurface.js";
 import { MyRockSet } from "./MyRockSet.js";
 import { MyPillar } from "./MyPillar.js";
+import { MyRotatedPyramid } from "./MyRotatedPyramid.js";
 
 /**
 * MyScene
@@ -40,12 +41,11 @@ export class MyScene extends CGFscene {
 
         //Initialize scene objects
         this.axis = new CGFaxis(this);
-        this.incompleteSphere = new MySphere(this, 16, 8);
-        this.movingObject = new MyMovingObject(this);
+        this.movingObject = new MyMovingObject(this, new MyRotatedPyramid(this, 10, 10));
         this.cylinder = new MyCylinder(this, 32);
         this.sphere = new MySphere(this, 64, 64);
 
-        this.fish = new MyFish(this);
+        this.fish = new MyMovingFish(this);
         this.seaFloor = new MySeaFloor(this, 20, 50, 3);
         this.nest = new MyNest(this, 3, 30);
         this.waterSurface = new MyWaterSurface(this, 100, 50);
@@ -67,7 +67,6 @@ export class MyScene extends CGFscene {
 		this.sphereAppearance.setDiffuse(0.7, 0.7, 0.7, 1);
 		this.sphereAppearance.setSpecular(0.0, 0.0, 0.0, 1);
 		this.sphereAppearance.setShininess(120);
-        // Debug 
         this.sphereAppearance.loadTexture("./images/earth.jpg");
         this.sphereAppearance.setTextureWrap('REPEAT', 'REPEAT');
 
@@ -185,10 +184,10 @@ export class MyScene extends CGFscene {
     // called periodically (as per setUpdatePeriod() in init())
     update(t){
         //To be done... It is done. Is it done?
-        this.checkKeys();
         this.movingObject.update();
         this.fish.update(t);
         this.waterSurface.update(t);
+        this.checkKeys();
     }
 
     updateMovingObjectSpeedScale(speedScale){

@@ -1,12 +1,11 @@
 import { CGFobject } from "../lib/CGF.js";
-import { MyPyramid } from "./MyPyramid.js";
 
 export class MyMovingObject extends CGFobject{
-    constructor(scene){
+    constructor(scene, object){
         super(scene);
         this.reset();
-        this.pyramid = new MyPyramid(scene, 10, 10);
         this.speedScale = 1.0;
+        this.object = object;
     }
 
     update() {
@@ -34,8 +33,12 @@ export class MyMovingObject extends CGFobject{
         this.scene.translate(this.position[0], 0.0, this.position[2]);
         this.scene.scale(scale, scale, scale);
         this.scene.rotate(this.orientation, 0, 1, 0);
-        this.scene.rotate(Math.PI/2, 1, 0, 0);
-        this.pyramid.display();
+
+        var extra_arguments = []; // TODO: Document this
+        for(var i = 1; i < arguments.length; ++i){
+            extra_arguments.push(arguments[i]);
+        }
+        this.object.display(...extra_arguments);
         this.scene.popMatrix();
     }
 
