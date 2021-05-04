@@ -29,7 +29,7 @@ export class MyWaterSurface extends CGFobject {
         this.scene.setActiveShader(this.shader);
         
         this.scene.pushMatrix();
-        this.scene.translate(0, 20, 0);
+        this.scene.translate(0, 10, 0);
         this.scene.scale(this.width, 1, this.width);
         this.scene.rotate(Math.PI/2, 1, 0, 0);
         this.plane.display();
