@@ -8,7 +8,7 @@ export class MyFish extends CGFobject{
     constructor(scene){
         super(scene);
         this.reset();
-
+    
         // Objects
         this.body = new MySphere(scene, 64, 64); // TODO: Stacks / slices could be parameters
         this.bigFin = new MyTriangleBig(scene);
@@ -30,6 +30,15 @@ export class MyFish extends CGFobject{
 
         this.time = 0.0;
         
+        this.verticalSpeed = 0.0;
+        this.maxVerticalSpeed = 0.1;
+        this.maxVerticalPosition = 5;
+        this.minVerticalPosition = 2.3;
+
+        this.bigFinAngle = 0.0;
+        this.bigFinMinAngularVelocity = 1;
+        this.bigFinAngularVelocity = 1;
+
         this.initMaterials();
     }
     
@@ -57,29 +66,52 @@ export class MyFish extends CGFobject{
 
     update(time) {
         this.position[0] += Math.sin(this.orientation) * this.speed * this.speedScale;
+        this.position[1] += this.verticalSpeed;
+        if(this.position[1] < this.minVerticalPosition){
+            this.position[1] = this.minVerticalPosition;
+        }
+        if(this.position[1] > this.maxVerticalPosition){
+            this.position[1] = this.maxVerticalPosition;
+        }
         this.position[2] += Math.cos(this.orientation) * this.speed * this.speedScale;
         this.time = time / 400;
+
+        this.bigFinAngle += this.bigFinAngularVelocity;
     }
 
     turn(val) {
+        this.currentTurn = val;
         this.orientation += val;
     }
     
     accelerate(val){
         this.speed += val;
         this.speed = Math.max(this.speed, 0);
+        this.bigFinAngularVelocity = this.speed < this.bigFinMinAngularVelocity ? this.bigFinMinAngularVelocity : this.speed;
     }
 
     reset(){
         this.speed = 0;
-        this.position = [0, 3, 0];
+        this.position = [0, 5, 0];
         this.orientation = 0.0;
+    }
+
+    moveUp(){
+        if(this.verticalSpeed < this.maxVerticalSpeed){
+            this.verticalSpeed += this.maxVerticalSpeed;
+        }
+    }
+
+    moveDown(){
+        if(this.verticalSpeed > -this.maxVerticalSpeed){
+            this.verticalSpeed -= this.maxVerticalSpeed;
+        }
     }
 
     display(scaleFactor){
         // Movement, Scale and Orientation
         this.scene.pushMatrix();
-        this.scene.translate(this.position[0], 3.0, this.position[2]);
+        this.scene.translate(this.position[0], this.position[1], this.position[2]);
         this.scene.scale(this.scale*scaleFactor, this.scale*scaleFactor, this.scale*scaleFactor);
         this.scene.rotate(this.orientation, 0, 1, 0);
 
@@ -104,7 +136,7 @@ export class MyFish extends CGFobject{
         // Big Fin
         this.scene.pushMatrix();
         this.scene.translate(0, 0, -this.bodyLength);
-        this.scene.rotate(Math.sin(this.time*0.6)*(20*Math.PI/180), 0, 1, 0);
+        this.scene.rotate(Math.sin(this.bigFinAngle), 0, 1, 0);
         this.scene.translate(0, 0, -2*this.bigFinScale);
         this.scene.rotate(Math.PI/2, 0, 0, 1);
         this.scene.rotate(Math.PI/2, 1, 0, 0);
@@ -115,7 +147,9 @@ export class MyFish extends CGFobject{
         // Small Fin
         this.scene.pushMatrix();
         this.scene.translate(0, 0.8+this.topFinScale, 0.2);
-        this.scene.rotate(-Math.PI/2, 0, 1, 0);
+        if(this.currentTurn < 0){
+            this.scene.rotate(-Math.PI/2, 0, 1, 0);   
+        }
         this.scene.scale(this.topFinScale, this.topFinScale, this.topFinScale);
         this.topFin.display();
         this.scene.popMatrix();

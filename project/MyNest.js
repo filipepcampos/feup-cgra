@@ -25,8 +25,8 @@ export class MyNest extends CGFobject {
         this.heightTexture.bind(1);
         this.scene.setActiveShader(this.shader);
         this.scene.pushMatrix();
-        this.scene.scale(this.radius, 1, this.radius);
-        this.scene.translate(0, 2.45, 0);
+        this.scene.scale(this.radius, 0.8, this.radius);
+        this.scene.translate(0, 2.8, 0);
         this.scene.rotate(Math.PI, 1, 0, 0);
         super.display();
         this.scene.popMatrix();
