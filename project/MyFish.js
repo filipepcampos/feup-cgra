@@ -51,8 +51,9 @@ export class MyFish extends CGFobject{
         this.eyeAppearance.loadTexture("./images/eye.jpg");
     }
 
-    display(bigFinAngle, leftFinAngle, rightFinAngle){
+    display(bodyRotation, bigFinAngle, leftFinAngle, rightFinAngle){
         this.scene.pushMatrix();
+        this.scene.rotate(bodyRotation, 1, 0, 0);
         this.scene.scale(this.scale, this.scale, this.scale);
 
         this.eyeAppearance.apply();

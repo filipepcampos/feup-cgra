@@ -25,9 +25,13 @@ export class MyMovingFish extends MyMovingObject{
         super.update(time);
         this.position[1] += this.verticalSpeed;
         // Make sure minVerticalPosition <= position[1] <= maxVerticalPosition
-        this.position[1] = this.position[1] < this.minVerticalPosition ? this.minVerticalPosition : 
-                (this.position[1] > this.maxVerticalPosition ? this.maxVerticalPosition : this.position[1]);
-                
+        if(this.position[1] < this.minVerticalPosition){
+            this.position[1] = this.minVerticalPosition;
+            this.verticalSpeed = 0;
+        } else if (this.position[1] > this.maxVerticalPosition){
+            this.position[1] = this.maxVerticalPosition;
+            this.verticalSpeed = 0;
+        }
         this.bigFinAngle += this.bigFinAngularVelocity;
 
         if(this.lastTurnVal >= 0){
@@ -70,7 +74,11 @@ export class MyMovingFish extends MyMovingObject{
     display(scaleFactor){
         this.scene.pushMatrix();
         this.scene.translate(0, this.position[1], 0);
-        super.display(scaleFactor, this.bigFinAngle, this.leftFinAngle, this.rightFinAngle);
+        var bodyRotation = 0;
+        if(this.verticalSpeed != 0 && this.position[1] != this.maxVerticalPosition && this.position[1] != this.minVerticalPosition){
+            bodyRotation = this.verticalSpeed < 0 ? Math.PI/8 : -Math.PI/8;
+        }
+        super.display(scaleFactor, bodyRotation, this.bigFinAngle, this.leftFinAngle, this.rightFinAngle);
         this.scene.popMatrix();
     }
 }
