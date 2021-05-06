@@ -33,4 +33,12 @@ Note: These screenshots were updated after some modifications, the originals can
 
 ### 5 - MyPillar
 
-![Screenshot 1](project/screenshots/proj-t7g02-5.png)
+MyPillar:
+
+![Screenshot 1](project/screenshots/proj-t7g02-5a.png)
+
+The scene currently uses `MyModifiedPillar` instead of MyPillar, the ModifiedPillar stacks multiple `ModifiedCylinders` on top of each other repeat the texture height-wise. `MyModifiedCylinder` has allows the repetition of the texture length-wise
+
+This combination allows for overall better looking textures
+
+![Screenshot 2](projects/screenshots/proj-t7g02-5b.png)

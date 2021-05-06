@@ -10,6 +10,7 @@ import { MyNest } from "./MyNest.js";
 import { MyWaterSurface } from "./MyWaterSurface.js";
 import { MyRockSet } from "./MyRockSet.js";
 import { MyPillar } from "./MyPillar.js";
+import { MyModifiedPillar } from "./MyModifiedPillar.js";
 import { MyRotatedPyramid } from "./MyRotatedPyramid.js";
 
 /**
@@ -50,10 +51,10 @@ export class MyScene extends CGFscene {
         this.nest = new MyNest(this, 3, 30);
         this.waterSurface = new MyWaterSurface(this, 100, 50);
         this.rockSet = new MyRockSet(this, 50);
-        this.pillars = [new MyPillar(this, 10, [15, -2]),
-                        new MyPillar(this, 10, [15, 2]),
-                        new MyPillar(this, 10, [8, -2]),
-                        new MyPillar(this, 10, [8,  2])];
+        this.pillars = [new MyModifiedPillar(this, 16, [15, -2]),
+                        new MyModifiedPillar(this, 16, [15, 2]),
+                        new MyModifiedPillar(this, 16, [8, -2]),
+                        new MyModifiedPillar(this, 16, [8,  2])];
 
         this.defaultAppearance = new CGFappearance(this);
 		this.defaultAppearance.setAmbient(0.2, 0.4, 0.8, 1.0);
