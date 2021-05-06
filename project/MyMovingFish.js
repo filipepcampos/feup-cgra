@@ -35,10 +35,18 @@ export class MyMovingFish extends MyMovingObject{
         this.bigFinAngle += this.bigFinAngularVelocity;
 
         if(this.lastTurnVal >= 0){
-            this.leftFinAngle += this.sideFinAngularVelocity;
+            this.leftFinAngle = (this.leftFinAngle + this.sideFinAngularVelocity) % (2*Math.PI);
         }
         if(this.lastTurnVal <= 0){
-            this.rightFinAngle += this.sideFinAngularVelocity;
+            this.rightFinAngle = (this.rightFinAngle + this.sideFinAngularVelocity) % (2*Math.PI);
+        }
+        if(this.lastTurnVal == 0){
+            // If the fish didn't turn and both fins are at different angles
+            // make the leftFin move slightly faster to 'catch up' to the right fin
+            // so that their angle is syncronized after a bit
+            if(Math.abs(this.leftFinAngle - this.rightFinAngle) > 0.1){
+                this.leftFinAngle = (this.leftFinAngle + this.sideFinAngularVelocity/3) % (2*Math.PI);
+            }
         }
 
         this.lastTurnVal = 0.0;
