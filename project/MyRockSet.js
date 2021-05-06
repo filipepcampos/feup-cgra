@@ -10,7 +10,7 @@ export class MyRockSet extends CGFobject{
             var position = [Math.random()*50 - 25, Math.random()*50 - 25];
             var scale = [Math.random()*0.3+0.1, Math.random()*0.2+0.1, Math.random()*0.3+0.1];
             var rotation = Math.random()*2*Math.PI;
-            this.rocks.push(new MyRock(scene, 6, 6, position, scale, rotation));
+            this.rocks.push(new MyRock(scene, 16, 16, position, scale, rotation));
         }
     }
 
