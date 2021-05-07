@@ -41,4 +41,4 @@ The scene currently uses `MyModifiedPillar` instead of MyPillar, the ModifiedPil
 
 This combination allows for overall better looking textures
 
-![Screenshot 2](projects/screenshots/proj-t7g02-5b.png)
+![Screenshot 2](project/screenshots/proj-t7g02-5b.png)
