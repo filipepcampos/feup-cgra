@@ -30,7 +30,7 @@ export class MyFish extends CGFobject{
     }
     
     initMaterials(){
-        this.scalesTexture = new CGFtexture(this.scene, "./images/fish.jpg");
+        this.scalesTexture = new CGFtexture(this.scene, "./images/fish/fish.jpg");
         this.bodyShader = new CGFshader(this.scene.gl, "./shaders/illuminatedBodyShader.vert", "./shaders/illuminatedBodyShader.frag");
 
         this.finsAppearence = new CGFappearance(this.scene);
@@ -48,7 +48,7 @@ export class MyFish extends CGFobject{
         this.eyeAppearance.setDiffuse(0.9, 0.9, 0.9, 1.0);
         this.eyeAppearance.setSpecular(0.9, 0.9, 0.9, 1.0);
 		this.eyeAppearance.setShininess(120);
-        this.eyeAppearance.loadTexture("./images/eye.jpg");
+        this.eyeAppearance.loadTexture("./images/fish/eye.jpg");
     }
 
     display(bodyRotation, bigFinAngle, leftFinAngle, rightFinAngle){

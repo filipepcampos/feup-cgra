@@ -76,9 +76,6 @@ export class MyModifiedCylinder extends CGFobject {
             } else {
                 currentSlice++;
             }
-
-            console.log(currentSlice);
-
             
             xTexCoord += deltaTexCoord;
             ang += alphaAng;

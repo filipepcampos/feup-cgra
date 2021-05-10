@@ -12,6 +12,7 @@ import { MyRockSet } from "./MyRockSet.js";
 import { MyPillar } from "./MyPillar.js";
 import { MyModifiedPillar } from "./MyModifiedPillar.js";
 import { MyRotatedPyramid } from "./MyRotatedPyramid.js";
+import { MyRuin } from "./MyRuin.js";
 
 /**
 * MyScene
@@ -55,6 +56,7 @@ export class MyScene extends CGFscene {
                         new MyModifiedPillar(this, 16, [15, 2]),
                         new MyModifiedPillar(this, 16, [8, -2]),
                         new MyModifiedPillar(this, 16, [8,  2])];
+        this.ruin = new MyRuin(this, 16, [-5, -5]);
 
         this.defaultAppearance = new CGFappearance(this);
 		this.defaultAppearance.setAmbient(0.2, 0.4, 0.8, 1.0);
@@ -84,6 +86,7 @@ export class MyScene extends CGFscene {
     initLights() {
         this.lights[0].setPosition(15, 2, 5, 1);
         this.lights[0].setDiffuse(1.0, 1.0, 1.0, 1.0);
+        this.lights[0].setAmbient(0.3, 0.3, 0.3, 1.0);
         this.lights[0].enable();
         this.lights[0].update();
     }
@@ -228,6 +231,7 @@ export class MyScene extends CGFscene {
         this.nest.display();
         this.waterSurface.display();
         this.rockSet.display();
+        this.ruin.display();
         for (var i = 0; i < 4; ++i){
             this.pillars[i].display();
         }

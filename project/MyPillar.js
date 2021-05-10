@@ -10,7 +10,9 @@ export class MyPillar extends MyCylinder{
 
     initMaterials() {
         this.appearence = new CGFappearance(this.scene);
-        this.appearence.loadTexture("./images/pier_column.jpg");
+        this.appearence.setDiffuse(1.0, 1.0, 1.0, 1.0);
+        this.appearence.setAmbient(1.0, 1.0, 1.0, 1.0);
+        this.appearence.loadTexture("./images/pillar/pier_column.jpg");
     }
 
     display(){

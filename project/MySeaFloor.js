@@ -14,8 +14,8 @@ export class MySeaFloor extends CGFobject{
 
     initMaterials(){
         this.shader = new CGFshader(this.scene.gl, "./shaders/seaFloor.vert", "./shaders/seaFloor.frag");
-        this.sandTexture = new CGFtexture(this.scene, "./images/sand.png");
-        this.sandMap = new CGFtexture(this.scene, "./images/sandMap.png");
+        this.sandTexture = new CGFtexture(this.scene, "./images/sand/sand.png");
+        this.sandMap = new CGFtexture(this.scene, "./images/sand/sandMap.png");
         
         this.shader.setUniformsValues({maxHeight: this.maxHeight, uSampler2: 1});
     }

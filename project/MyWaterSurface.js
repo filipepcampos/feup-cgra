@@ -15,8 +15,8 @@ export class MyWaterSurface extends CGFobject {
     
     initMaterials(){
         this.shader = new CGFshader(this.scene.gl, "./shaders/waterSurface.vert", "./shaders/waterSurface.frag");
-        this.distortionMap = new CGFtexture(this.scene, "./images/distortionmap.png");
-        this.seaTexture = new CGFtexture(this.scene, "./images/pier.jpg");
+        this.distortionMap = new CGFtexture(this.scene, "./images/water/distortionmap.png");
+        this.seaTexture = new CGFtexture(this.scene, "./images/water/pier.jpg");
     }
 
     display(){
