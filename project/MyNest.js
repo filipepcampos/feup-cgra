@@ -7,6 +7,14 @@ export class MyNest extends CGFobject {
         this.radius = radius;
         this.initBuffers();
         this.initMaterials();
+
+        var pos = 1.5;
+        var yHeight = 1.6;
+        var yOffset = 0.2;
+        this.rocks = [[[0,yHeight,0],null],[[-pos,yHeight + yOffset,0], null],[[pos,yHeight + yOffset,0], null],
+            [[0,yHeight + yOffset,-pos], null],[[0,yHeight + yOffset,pos], null],[[-pos,yHeight + yOffset*2,-pos], null],
+            [[pos,yHeight + yOffset*2,pos], null],[[pos,yHeight + yOffset*2,-pos], null],[[-pos,yHeight + yOffset*2,pos], null]
+        ];
     }
 
     initMaterials(){
@@ -21,15 +29,38 @@ export class MyNest extends CGFobject {
     }
 
     display(){
+        this.scene.pushMatrix();
+        for(var i = 0; i < this.rocks.length; ++i){
+            if(this.rocks[i][1] != null){
+                this.scene.pushMatrix();
+                this.scene.translate(...this.rocks[i][0]);
+                this.rocks[i][1].display();
+                this.scene.popMatrix();
+            }
+        }
         this.appearence.apply();
         this.heightTexture.bind(1);
         this.scene.setActiveShader(this.shader);
-        this.scene.pushMatrix();
         this.scene.scale(this.radius, 0.8, this.radius);
         this.scene.translate(0, 2.8, 0);
         this.scene.rotate(Math.PI, 1, 0, 0);
         super.display();
         this.scene.popMatrix();
+    }
+
+    addRock(rock){
+        for(var i = 0; i < this.rocks.length; ++i){
+            if(this.rocks[i][1] == null){
+                this.rocks[i][1] = rock;
+                return;
+            }
+        }
+    }
+
+    reset(){
+        for(var i = 0; i < this.rocks.length; ++i){
+            this.rocks[i][1] = null;
+        }
     }
     
     initBuffers(){

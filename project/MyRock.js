@@ -7,14 +7,13 @@ export class MyRock extends CGFobject {
    * @param  {integer} slices - number of slices around Y axis
    * @param  {integer} stacks - number of stacks along Y axis, from the center to the poles (half of rock)
    */
-  constructor(scene, slices, stacks, position, scale, rotation) {
+  constructor(scene, slices, stacks, scale, rotation) {
     super(scene);
     this.latDivs = stacks * 2;
     this.longDivs = slices;
     this.appearence = new CGFappearance(scene);
     this.appearence.setAmbient(0.2,0.2,0.2,1.0);
     this.appearence.setDiffuse(0.4,0.4,0.4,1.0);
-    this.position = position;
     this.scale = scale;
     this.rotation = rotation;
 
@@ -101,7 +100,6 @@ export class MyRock extends CGFobject {
   display(){
       this.appearence.apply();
       this.scene.pushMatrix();
-      this.scene.translate(this.position[0], 1.5, this.position[1]);
       this.scene.rotate(this.rotation,0,1,0);
       this.scene.scale(...this.scale);
       super.display();

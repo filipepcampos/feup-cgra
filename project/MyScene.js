@@ -166,6 +166,8 @@ export class MyScene extends CGFscene {
             keysPressed=true;
             this.movingObject.reset();
             this.fish.reset();
+            this.rockSet.resetRocks();
+            this.nest.reset();
         }
 
         if (this.gui.isKeyPressed("KeyP")){
@@ -178,6 +180,21 @@ export class MyScene extends CGFscene {
             text+=" L ";
             keysPressed=true;
             this.fish.moveDown();
+        }
+
+        if (this.gui.isKeyPressed("KeyC")) {
+            text+=" C ";
+            keysPressed=true;
+            if(this.fish.hasRock() && this.fish.canDropRock()){
+                var rock = this.fish.getRock();
+                this.fish.removeRock();
+                this.nest.addRock(rock);
+            } else {
+                if(this.fish.canHaveRock()) {
+                    var rock = this.rockSet.getNearestRock(this.fish.position[0], this.fish.position[2]);
+                    if(rock != null) this.fish.addRock(rock);
+                }
+            }
         }
 
         if (keysPressed)

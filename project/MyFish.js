@@ -3,6 +3,7 @@ import { MyTriangleBig } from "./MyTriangleBig.js";
 import { MyTriangle } from "./MyTriangle.js";
 import { MySphere } from "./MySphere.js";
 import { MyPyramid } from "./MyPyramid.js";
+import { MyRock } from "./MyRock.js";
 
 export class MyFish extends CGFobject{
     constructor(scene){
@@ -25,6 +26,8 @@ export class MyFish extends CGFobject{
         this.lateralFinScale = 0.5;
         this.gillsScale = 1.02;
         this.speedScale = 1.0;
+
+        this.rock = null;
 
         this.initMaterials();
     }
@@ -49,6 +52,10 @@ export class MyFish extends CGFobject{
         this.eyeAppearance.setSpecular(0.9, 0.9, 0.9, 1.0);
 		this.eyeAppearance.setShininess(120);
         this.eyeAppearance.loadTexture("./images/fish/eye.jpg");
+    }
+
+    addRock(rock){
+        this.rock = rock;
     }
 
     display(bodyRotation, bigFinAngle, leftFinAngle, rightFinAngle){
@@ -120,6 +127,15 @@ export class MyFish extends CGFobject{
         this.scene.rotate(Math.PI/2, 1, 0, 0);
         this.gills.display();
         this.scene.popMatrix();
+
+        // Rock
+        if(this.rock != null){
+            this.scene.pushMatrix();
+            this.scene.translate(0, 0, this.bodyLength+this.rock.scale[2]);
+            this.scene.scale(1/this.scale, 1/this.scale, 1/this.scale);
+            this.rock.display();
+            this.scene.popMatrix();
+        }
 
 
         this.bodyAppearence.apply();

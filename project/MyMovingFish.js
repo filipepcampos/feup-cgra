@@ -1,9 +1,12 @@
 import { MyFish } from "./MyFish.js";
 import { MyMovingObject } from "./MyMovingObject.js";
+import { MyRock } from "./MyRock.js";
 
 export class MyMovingFish extends MyMovingObject{
     constructor(scene){
-        super(scene, new MyFish(scene));
+        const fish = new MyFish(scene);
+        super(scene, fish);
+        this.fish = fish;
 
         this.verticalSpeed = 0.0;
         this.maxVerticalSpeed = 0.1;
@@ -65,6 +68,7 @@ export class MyMovingFish extends MyMovingObject{
     reset(){
         super.reset();
         this.position = [0, 5, 0];
+        this.removeRock();
     }
 
     moveUp(){
@@ -78,6 +82,31 @@ export class MyMovingFish extends MyMovingObject{
             this.verticalSpeed -= this.maxVerticalSpeed;
         }
     }
+
+    addRock(rock){
+        this.fish.addRock(rock);
+    }
+
+    canHaveRock() {
+        return this.position[1] == this.minVerticalPosition && this.fish.rock == null;
+    }
+
+    canDropRock() {
+        return Math.sqrt(Math.pow(this.position[0], 2) + Math.pow(this.position[2], 2)) <= 3;
+    }
+
+    getRock(){
+        return this.fish.rock;
+    }
+
+    hasRock(){
+        return this.fish.rock != null;
+    }
+
+    removeRock(){
+        this.addRock(null);
+    }
+
 
     display(scaleFactor){
         this.scene.pushMatrix();

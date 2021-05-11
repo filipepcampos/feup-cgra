@@ -3,7 +3,9 @@ import { CGFobject } from "../lib/CGF.js";
 export class MyMovingObject extends CGFobject{
     constructor(scene, object){
         super(scene);
-        this.reset();
+        this.speed = 0;
+        this.position = [0, 0, -0.5];
+        this.orientation = 0.0;
         this.speedScale = 1.0;
         this.object = object;
     }
