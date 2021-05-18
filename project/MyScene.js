@@ -13,6 +13,7 @@ import { MyPillar } from "./MyPillar.js";
 import { MyModifiedPillar } from "./MyModifiedPillar.js";
 import { MyRotatedPyramid } from "./MyRotatedPyramid.js";
 import { MyRuin } from "./MyRuin.js";
+import { MyAlgae } from "./MyAlgae.js";
 
 /**
 * MyScene
@@ -57,6 +58,7 @@ export class MyScene extends CGFscene {
                         new MyModifiedPillar(this, 16, [8, -2]),
                         new MyModifiedPillar(this, 16, [8,  2])];
         this.ruin = new MyRuin(this, 16, [-5, -5]);
+        this.debugAlgae = new MyAlgae(this, 3, 6);
 
         this.defaultAppearance = new CGFappearance(this);
 		this.defaultAppearance.setAmbient(0.2, 0.4, 0.8, 1.0);
@@ -249,6 +251,10 @@ export class MyScene extends CGFscene {
         this.waterSurface.display();
         this.rockSet.display();
         this.ruin.display();
+        this.pushMatrix();
+        this.scale(5, 5, 5);
+        this.debugAlgae.display();
+        this.popMatrix();
         for (var i = 0; i < 4; ++i){
             this.pillars[i].display();
         }
