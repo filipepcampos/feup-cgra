@@ -92,16 +92,12 @@ export class MyAlgae extends CGFobject {
                 // 2*j*i + 1, 2*j*i +2
                
                 this.indices.push(2*((j-1)*this.slices+i)+1, 2*(j*this.slices+i)+2, 2*((j-1)*this.slices+i)+2);
-                this.indices.push(2*((j-1)*this.slices+i)+1, 2*(j*this.slices)+1, 2*(j*this.slices+i)+2);
+                this.indices.push(2*((j-1)*this.slices+i)+1, 2*(j*this.slices+i)+1, 2*(j*this.slices+i)+2);
                 
     
                 ang+=alphaAng;
             }
         }
-
-        console.log(this.vertices);
-        console.log(this.indices);
-
         this.primitiveType = this.scene.gl.TRIANGLES;
         this.initGLBuffers();
     }
