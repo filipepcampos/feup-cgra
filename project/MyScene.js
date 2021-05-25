@@ -58,7 +58,7 @@ export class MyScene extends CGFscene {
                         new MyModifiedPillar(this, 16, [8, -2]),
                         new MyModifiedPillar(this, 16, [8,  2])];
         this.ruin = new MyRuin(this, 16, [-5, -5]);
-        this.debugAlgae = new MyAlgae(this, 3, 6);
+        this.debugAlgae = new MyAlgae(this, 10, 10);
 
         this.defaultAppearance = new CGFappearance(this);
 		this.defaultAppearance.setAmbient(0.2, 0.4, 0.8, 1.0);
@@ -210,6 +210,7 @@ export class MyScene extends CGFscene {
         this.movingObject.update();
         this.fish.update(t);
         this.waterSurface.update(t);
+        this.debugAlgae.update(t);
         this.checkKeys();
     }
 
@@ -246,7 +247,7 @@ export class MyScene extends CGFscene {
         if (this.displayMovingObject) this.movingObject.display(this.scaleFactorMovingObject);
 
         this.fish.display(this.scaleFactorMovingObject);
-        this.seaFloor.display();
+        //this.seaFloor.display();
         this.nest.display();
         this.waterSurface.display();
         this.rockSet.display();
