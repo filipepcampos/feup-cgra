@@ -13,7 +13,7 @@ import { MyPillar } from "./MyPillar.js";
 import { MyModifiedPillar } from "./MyModifiedPillar.js";
 import { MyRotatedPyramid } from "./MyRotatedPyramid.js";
 import { MyRuin } from "./MyRuin.js";
-import { MyAlgae } from "./MyAlgae.js";
+import { MyAlgaeSet } from "./MyAlgaeSet.js";
 
 /**
 * MyScene
@@ -58,7 +58,7 @@ export class MyScene extends CGFscene {
                         new MyModifiedPillar(this, 16, [8, -2]),
                         new MyModifiedPillar(this, 16, [8,  2])];
         this.ruin = new MyRuin(this, 16, [-5, -5]);
-        this.debugAlgae = new MyAlgae(this, 10, 10);
+        this.algaeSet = new MyAlgaeSet(this, 50);
 
         this.defaultAppearance = new CGFappearance(this);
 		this.defaultAppearance.setAmbient(0.2, 0.4, 0.8, 1.0);
@@ -210,7 +210,7 @@ export class MyScene extends CGFscene {
         this.movingObject.update();
         this.fish.update(t);
         this.waterSurface.update(t);
-        this.debugAlgae.update(t);
+        this.algaeSet.update(t);
         this.checkKeys();
     }
 
@@ -247,15 +247,12 @@ export class MyScene extends CGFscene {
         if (this.displayMovingObject) this.movingObject.display(this.scaleFactorMovingObject);
 
         this.fish.display(this.scaleFactorMovingObject);
-        //this.seaFloor.display();
+        this.seaFloor.display();
         this.nest.display();
         this.waterSurface.display();
         this.rockSet.display();
         this.ruin.display();
-        this.pushMatrix();
-        this.scale(5, 5, 5);
-        this.debugAlgae.display();
-        this.popMatrix();
+        this.algaeSet.display();
         for (var i = 0; i < 4; ++i){
             this.pillars[i].display();
         }

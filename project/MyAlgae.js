@@ -1,19 +1,15 @@
 import { CGFobject, CGFshader } from "../lib/CGF.js";
 
 export class MyAlgae extends CGFobject {
-    constructor(scene, slices, stacks) {
+    constructor(scene, slices, stacks, greenColor) {
         super(scene);
         this.slices = slices;
         this.stacks = stacks;
+        this.color = greenColor;
         this.angle = 0;
         this.angularVelocity = Math.PI/25;
         this.lastTime = 0;
         this.initBuffers();
-        this.initMaterials();
-    }
-
-    initMaterials(){
-        this.shader = new CGFshader(this.scene.gl, "./shaders/algaeShader.vert", "./shaders/algaeShader.frag");
     }
 
     update(time){
@@ -22,9 +18,8 @@ export class MyAlgae extends CGFobject {
         this.lastTime = t;
     }
 
-    display(){
-        this.shader.setUniformsValues({angle: this.angle});
-        this.scene.setActiveShader(this.shader);
+    display(shader){
+        shader.setUniformsValues({green: this.color, angle: this.angle});
         super.display();
     }
     
