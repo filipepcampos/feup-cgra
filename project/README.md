@@ -51,10 +51,10 @@ This combination allows for overall better looking textures
 
 ### 7 - Recolha de Pedras
 
-![Screenshot 1](projects/screenshot/proj-t7g02-7.png)
+![Screenshot 1](project/screenshots/proj-t7g02-7.png)
 
 ### 8 - Funcionalidades adicionais
 
-![Screenshot 1](projects/screenshots/proj-t7g02-8a.png)
+![Screenshot 1](project/screenshots/proj-t7g02-8a.png)
 
-![Screenshot 2](projects/screenshots/proj-t7g02-8b.gif)
+![Screenshot 2](project/screenshots/proj-t7g02-8b.gif)
