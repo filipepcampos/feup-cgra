@@ -28,7 +28,6 @@ export class MyScene extends CGFscene {
         super.init(application);
         this.initCameras();
         this.initLights();
-        this.initCubeMap();
 
         //Background color
         this.gl.clearColor(0.0, 0.0, 0.0, 1.0);
@@ -42,12 +41,30 @@ export class MyScene extends CGFscene {
         
         this.enableTextures(true);
 
-        //Initialize scene objects
+        this.initObjects();
+
+        this.initMaterials();
+
+        //Objects connected to MyInterface
+        this.displayAxis = true;
+        this.selectedCubeMapTexture = 0;
+        this.displaySphere = false;
+        this.displayCylinder = false;
+        this.displayMovingObject = false;
+        this.scaleFactorMovingObject = 1.0;
+        this.speedFactorMovingObject = 1.0;
+    }
+
+    initObjects(){
+        this.initCubeMap();
         this.axis = new CGFaxis(this);
+
+        // Part A
         this.movingObject = new MyMovingObject(this, new MyRotatedPyramid(this, 10, 10));
         this.cylinder = new MyCylinder(this, 32);
         this.sphere = new MySphere(this, 64, 64);
 
+        // Part B
         this.fish = new MyMovingFish(this);
         this.seaFloor = new MySeaFloor(this, 20, 50, 3);
         this.nest = new MyNest(this, 3, 30);
@@ -59,7 +76,9 @@ export class MyScene extends CGFscene {
                         new MyModifiedPillar(this, 16, [8,  2])];
         this.ruin = new MyRuin(this, 16, [-5, -5]);
         this.algaeSet = new MyAlgaeSet(this, 50);
-
+    }
+    
+    initMaterials(){
         this.defaultAppearance = new CGFappearance(this);
 		this.defaultAppearance.setAmbient(0.2, 0.4, 0.8, 1.0);
         this.defaultAppearance.setDiffuse(0.2, 0.4, 0.8, 1.0);
@@ -74,15 +93,6 @@ export class MyScene extends CGFscene {
 		this.sphereAppearance.setShininess(120);
         this.sphereAppearance.loadTexture("./images/earth.jpg");
         this.sphereAppearance.setTextureWrap('REPEAT', 'REPEAT');
-
-        //Objects connected to MyInterface
-        this.displayAxis = true;
-        this.selectedCubeMapTexture = 0;
-        this.displaySphere = false;
-        this.displayCylinder = false;
-        this.displayMovingObject = false;
-        this.scaleFactorMovingObject = 1.0;
-        this.speedFactorMovingObject = 1.0;
     }
 
     initLights() {
@@ -132,40 +142,27 @@ export class MyScene extends CGFscene {
     }
 
     checkKeys()  {
-        var text="Keys pressed: ";
-        var keysPressed=false;
-
         if (this.gui.isKeyPressed("KeyW")) {
-            text+=" W ";
-            keysPressed=true;
             this.movingObject.accelerate(0.1);
             this.fish.accelerate(0.1);
         }
 
         if (this.gui.isKeyPressed("KeyS")) {
-            text+=" S ";
-            keysPressed=true;
             this.movingObject.accelerate(-0.1);
             this.fish.accelerate(-0.1);
         }
 
         if (this.gui.isKeyPressed("KeyA")) {
-            text+=" A ";
-            keysPressed=true;
             this.movingObject.turn(0.2);
             this.fish.turn(0.2);
         }
 
         if (this.gui.isKeyPressed("KeyD")) {
-            text+=" D ";
-            keysPressed=true;
             this.movingObject.turn(-0.2);
             this.fish.turn(-0.2);
         }
 
         if (this.gui.isKeyPressed("KeyR")) {
-            text+=" R ";
-            keysPressed=true;
             this.movingObject.reset();
             this.fish.reset();
             this.rockSet.resetRocks();
@@ -173,20 +170,14 @@ export class MyScene extends CGFscene {
         }
 
         if (this.gui.isKeyPressed("KeyP")){
-            text+=" P ";
-            keysPressed=true;
             this.fish.moveUp();
         }
 
         if (this.gui.isKeyPressed("KeyL")) {
-            text+=" L ";
-            keysPressed=true;
             this.fish.moveDown();
         }
 
         if (this.gui.isKeyPressed("KeyC")) {
-            text+=" C ";
-            keysPressed=true;
             if(this.fish.hasRock() && this.fish.canDropRock()){
                 var rock = this.fish.getRock();
                 this.fish.removeRock();
@@ -198,15 +189,10 @@ export class MyScene extends CGFscene {
                 }
             }
         }
-
-        if (keysPressed)
-                console.log(text);
-
     }
 
     // called periodically (as per setUpdatePeriod() in init())
     update(t){
-        //To be done... It is done. Is it done?
         this.movingObject.update();
         this.fish.update(t);
         this.waterSurface.update(t);
@@ -230,22 +216,24 @@ export class MyScene extends CGFscene {
         // Apply transformations corresponding to the camera position relative to the origin
         this.applyViewMatrix();
         
-        
         this.defaultAppearance.apply();
+
         // Draw axis
         if (this.displayAxis)
             this.axis.display();
 
-        this.sphereAppearance.apply();
         // ---- BEGIN Primitive drawing section
 
         //This sphere does not have defined texture coordinates
-        if(this.displaySphere) this.sphere.display();
 
+        // Part A
+        this.sphereAppearance.apply();
+        if(this.displaySphere) this.sphere.display();
         if(this.displayCylinder) this.cylinder.display();
-    
+        this.defaultAppearance.apply();
         if (this.displayMovingObject) this.movingObject.display(this.scaleFactorMovingObject);
 
+        // Part B
         this.fish.display(this.scaleFactorMovingObject);
         this.seaFloor.display();
         this.nest.display();
@@ -253,9 +241,7 @@ export class MyScene extends CGFscene {
         this.rockSet.display();
         this.ruin.display();
         this.algaeSet.display();
-        for (var i = 0; i < 4; ++i){
-            this.pillars[i].display();
-        }
+        for (var i = 0; i < this.pillars.length; ++i) this.pillars[i].display();
         this.cubeMap.display(this.camera.position);
 
         // ---- END Primitive drawing section

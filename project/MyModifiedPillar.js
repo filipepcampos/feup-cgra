@@ -7,9 +7,8 @@ export class MyModifiedPillar extends CGFobject {
         this.position = position;
         this.n_cylinders = 5;
         this.cylinders = [];
-        for(var i = 0; i < this.n_cylinders; ++i){
+        for(var i = 0; i < this.n_cylinders; ++i)
             this.cylinders.push(new MyModifiedCylinder(scene, slices, 2));
-        }
         this.initMaterials();
     }
 

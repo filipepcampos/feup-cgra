@@ -6,12 +6,11 @@ export class MyAlgaeSet extends CGFobject{
         super(scene);
         this.numberOfAlgae = numberOfAlgae;
         this.algae = [];
-        for (var i = 0; i < numberOfAlgae; ++i) {
-            // Escolher num de folhas 0, max(numberOfAlgea-i, 5?)
-            // Desenhar folhas lado a lado
-            
+        for (var i = 0; i < numberOfAlgae; ++i) {  
             var numberLeafs = Math.random()*4+1;
-            var mainPosition = [Math.random()*48 - 24, 1.4, Math.random()*48 - 24];
+            var directionX = Math.random() < 0.5 ? -1 : 1;
+            var directionZ = Math.random() < 0.5 ? -1 : 1;
+            var mainPosition = [directionX*(Math.random()*21+3), 1.4, directionZ*(Math.random()*21+3)];
             var color = Math.random()*0.8+0.1;
             var scale = [Math.random()*0.05+0.1, Math.random()*1+0.1, Math.random()*0.05+0.1];
             this.algae.push([new MyAlgae(scene, 5, 5, color), mainPosition, scale]);
@@ -31,17 +30,16 @@ export class MyAlgaeSet extends CGFobject{
     }
 
     update(t){
-        for(var i = 0; i < this.algae.length; ++i){
+        for(var i = 0; i < this.algae.length; ++i)
             this.algae[i][0].update(t);
-        }
     }
 
 
     display(){
         this.scene.setActiveShader(this.shader);
-        for(var i = 0; i < this.numberOfAlgae; ++i){
+        for(var i = 0; i < this.algae.length; ++i){
             this.scene.pushMatrix();
-            this.scene.translate(...this.algae[i][1]); // TODO This is a bit ugly
+            this.scene.translate(...this.algae[i][1]);
             this.scene.scale(...this.algae[i][2]);
             this.algae[i][0].display(this.shader);
             this.scene.popMatrix();         
