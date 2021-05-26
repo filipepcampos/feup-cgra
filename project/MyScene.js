@@ -1,4 +1,5 @@
 import { CGFscene, CGFcamera, CGFaxis, CGFappearance, CGFtexture } from "../lib/CGF.js";
+import { CGFcamera2 } from "./CGFcamera2.js";
 import { MyMovingObject } from "./MyMovingObject.js";
 import { MySphere } from "./MySphere.js";
 import { MyCubeMap } from "./MyCubeMap.js";
@@ -104,7 +105,7 @@ export class MyScene extends CGFscene {
     }
 
     initCameras() {
-        this.camera = new CGFcamera(1.5, 0.1, 500, vec3.fromValues(2, 3, 2), vec3.fromValues(0, 2, 0));
+        this.camera = new CGFcamera2(1.5, 0.1, 500, vec3.fromValues(2, 3, 2), vec3.fromValues(0, 2, 0));
     }
 
     initCubeMap() {
