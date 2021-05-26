@@ -57,4 +57,4 @@ This combination allows for overall better looking textures
 
 ![Screenshot 1](project/screenshots/proj-t7g02-8a.png)
 
-![Screenshot 2](project/screenshots/proj-t7g02-8b.gif)
+![Screenshot 2](project/screenshots/proj-t7g02-8b.png)
