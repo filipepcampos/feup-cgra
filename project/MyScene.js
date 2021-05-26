@@ -47,7 +47,7 @@ export class MyScene extends CGFscene {
         this.initMaterials();
 
         //Objects connected to MyInterface
-        this.displayAxis = true;
+        this.displayAxis = false;
         this.selectedCubeMapTexture = 0;
         this.displaySphere = false;
         this.displayCylinder = false;
