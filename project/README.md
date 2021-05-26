@@ -42,3 +42,19 @@ The scene currently uses `MyModifiedPillar` instead of MyPillar, the ModifiedPil
 This combination allows for overall better looking textures
 
 ![Screenshot 2](project/screenshots/proj-t7g02-5b.png)
+
+### 6 - Outros Elementos
+
+![Screenshot 1](project/screenshots/proj-t7g02-6a.png)
+
+![Screenshot 2](project/screenshots/proj-t7g02-6b.png)
+
+### 7 - Recolha de Pedras
+
+![Screenshot 1](projects/screenshot/proj-t7g02-7.png)
+
+### 8 - Funcionalidades adicionais
+
+![Screenshot 1](projects/screenshots/proj-t7g02-8a.png)
+
+![Screenshot 2](projects/screenshots/proj-t7g02-8b.gif)
