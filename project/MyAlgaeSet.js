@@ -17,7 +17,7 @@ export class MyAlgaeSet extends CGFobject{
             for(var j = 0; j < numberLeafs - 1; ++j){
                 scale = [Math.random()*0.05+0.1, Math.random()*1+0.1, Math.random()*0.05+0.1];
                 var angle = Math.random()*2*Math.PI;
-                var radius = Math.random() + 0.1;
+                var radius = Math.random()*0.5 + 0.1;
                 var position = [mainPosition[0] + Math.cos(angle)*radius, mainPosition[1], mainPosition[2] + Math.sin(angle)*radius];
                 this.algae.push([new MyAlgae(scene, 5, 5, color), position, scale]);
             }
