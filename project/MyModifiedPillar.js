@@ -15,6 +15,8 @@ export class MyModifiedPillar extends CGFobject {
     initMaterials() {
         this.appearence = new CGFappearance(this.scene);
         this.appearence.loadTexture("./images/wood/baseColor.jpg");
+        this.appearence.setAmbient(0.8,0.8,0.8,1.0);
+        this.appearence.setDiffuse(0.7,0.7,0.7,1.0);
     }
 
     display(){
