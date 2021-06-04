@@ -1,6 +1,7 @@
 import { CGFscene, CGFcamera, CGFaxis, CGFappearance } from "../lib/CGF.js";
 import { MyCone } from "./MyCone.js";
 import { MyPlane } from "./MyPlane.js";
+import { MyPyramid } from "./MyPyramid.js";
 import { MyTangram } from "./MyTangram.js";
 import { MyUnitCube } from "./MyUnitCube.js";
 import { MyUnitCubeQuad } from "./MyUnitCubeQuad.js";
