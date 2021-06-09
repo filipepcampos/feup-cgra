@@ -4,6 +4,7 @@ Code developed for pratical classes.
 
 
 ## Group T07G02
+
 |Name|Number|E-Mail|
 |----------------|---------|--------------------|
 |[Adriano Soares](https://github.com/adr1an0s0ar3s)|201904873|up201904873@edu.fe.up.pt|
