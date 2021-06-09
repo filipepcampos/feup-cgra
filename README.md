@@ -4,10 +4,10 @@ Code developed for pratical classes.
 
 
 ## Group T07G02
-| Name             | Number    | E-Mail               |
-| ---------------- | --------- | -------------------- |
-| [Adriano Soares](https://github.com/adr1an0s0ar3s)   | 201904873 | up201904873@fe.up.pt |
-| Filipe Campos    | 201905609 | up201905609@fe.up.pt |
+|Name|Number|E-Mail|
+|----------------|---------|--------------------|
+|[Adriano Soares](https://github.com/adr1an0s0ar3s)|201904873|up201904873@edu.fe.up.pt|
+|[Filipe Campos](https://github.com/filipepcampos)|201905609|up201905609@edu.fe.up.pt|
 
 
 ## Relevant information
@@ -24,15 +24,13 @@ Code developed for pratical classes.
 # Experiment online
 
 The webgl scenes are hosted online with Github Pages.
-
-Our **project** can be accessed [**here**](https://filipepcampos.github.io/feup-cgra/project/)
-
-For ease of access here are all the tp classes:
+Here are the links to each class scene.
 
 | Name | Description|
 |------|-------------|
-|[TP1](https://filipepcampos.github.io/feup-cgra/tp1/)|Webgl Basics 🖥️|
-|[TP2](https://filipepcampos.github.io/feup-cgra/tp2/)|Transformation fun 👌|
-|[TP3](https://filipepcampos.github.io/feup-cgra/tp3/)|Working with light 💡|
-|[TP4](https://filipepcampos.github.io/feup-cgra/tp4/)|Texturing things up 🖌️|
-|[TP5](https://filipepcampos.github.io/feup-cgra/tp5/)|Shading the teapot 🍵|
+|[TP1](https://cgra.projects.filipepcampos.com/tp1/)|Webgl Basics 🖥️|
+|[TP2](https://cgra.projects.filipepcampos.com/tp2/)|Transformation fun 👌|
+|[TP3](https://cgra.projects.filipepcampos.com/tp3/)|Working with light 💡|
+|[TP4](https://cgra.projects.filipepcampos.com/tp4/)|Texturing things up 🖌️|
+|[TP5](https://cgra.projects.filipepcampos.com/tp5/)|Shading the teapot 🍵|
+|[Project](https://cgra.projects.filipepcampos.com/project/)|Final Project 🐠|
