@@ -29,9 +29,9 @@ Here are the links to each class scene.
 
 | Name | Description|
 |------|-------------|
-|[TP1](https://cgra.projects.filipepcampos.com/tp1/)|Webgl Basics 🖥️|
-|[TP2](https://cgra.projects.filipepcampos.com/tp2/)|Transformation fun 👌|
-|[TP3](https://cgra.projects.filipepcampos.com/tp3/)|Working with light 💡|
-|[TP4](https://cgra.projects.filipepcampos.com/tp4/)|Texturing things up 🖌️|
-|[TP5](https://cgra.projects.filipepcampos.com/tp5/)|Shading the teapot 🍵|
+|[TP1](https://cgra.projects.filipepcampos.com/tp1/)|Webgl Basics|
+|[TP2](https://cgra.projects.filipepcampos.com/tp2/)|Geometric Transformations|
+|[TP3](https://cgra.projects.filipepcampos.com/tp3/)|Lights|
+|[TP4](https://cgra.projects.filipepcampos.com/tp4/)|Textures|
+|[TP5](https://cgra.projects.filipepcampos.com/tp5/)|Shaders|
 |[Project](https://cgra.projects.filipepcampos.com/project/)|Final Project 🐠|
